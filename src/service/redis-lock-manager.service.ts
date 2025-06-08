@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { ConflictException, Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import Redlock, { Lock } from 'redlock';
 import { DiscoveryService, MetadataScanner, Reflector } from '@nestjs/core';
 import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper';
@@ -77,7 +77,13 @@ export class RedisLockManagerService {
             );
         } finally {
             if (lock) {
-                await lock.release();
+                await lock
+                    .release()
+                    .catch((error) =>
+                        Logger.debug(
+                            `Lock release skipped (likely expired) : redisKey="${this.buildRedisLockKey(key)}"`
+                        )
+                    );
             }
         }
     }

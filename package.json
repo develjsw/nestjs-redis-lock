@@ -1,6 +1,6 @@
 {
   "name": "nestjs-redis-lock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "NestJS decorator-based Redis distributed lock using Redlock",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,13 @@
     "build": "tsc",
     "prepare": "npm run build"
   },
-  "keywords": ["nestjs", "redis", "redlock", "distributed-lock", "decorator"],
+  "keywords": [
+    "nestjs",
+    "redis",
+    "redlock",
+    "distributed-lock",
+    "decorator"
+  ],
   "author": "SangWoo",
   "license": "MIT",
   "repository": {

@@ -11,6 +11,14 @@
   "keywords": ["nestjs", "redis", "redlock", "distributed-lock", "decorator"],
   "author": "SangWoo",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/develjsw/nestjs-redis-lock"
+  },
+  "bugs": {
+    "url": "https://github.com/develjsw/nestjs-redis-lock/issues"
+  },
+  "homepage": "https://github.com/develjsw/nestjs-redis-lock#readme",
   "dependencies": {
     "reflect-metadata": "^0.2.2"
   },

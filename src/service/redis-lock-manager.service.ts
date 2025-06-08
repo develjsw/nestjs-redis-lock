@@ -30,7 +30,8 @@ export class RedisLockManagerService {
     }
 
     private getAllStaticNestInstances(): InstanceWrapper[] {
-        return [...this.discoveryService.getControllers(), ...this.discoveryService.getProviders()]
+        return this.discoveryService
+            .getProviders()
             .filter((wrapper): boolean => wrapper.isDependencyTreeStatic())
             .filter(({ instance }) => !!instance && Object.getPrototypeOf(instance));
     }

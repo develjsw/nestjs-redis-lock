@@ -45,10 +45,10 @@ npm install nestjs-redis-lock ioredis redlock @nestjs/config
    }
    ```
    > ⚠️ Note
-   The @RedisLock() decorator must be applied to methods inside @Injectable() classes (e.g., services).
-   It will not work on methods inside @Controller() classes due to how NestJS internally proxies controller methods.
+   The @RedisLock() decorator only applies to methods defined in classes annotated with @Injectable()
+   Methods in @Controller() classes are intentionally excluded from scanning,
+   because NestJS binds controller methods at runtime before decorators can dynamically wrap them
 
-   > ✅ Recommended usage: put the lock on a service method, and call that from the controller or cron job.
 3. Set Environment Variables
    ```dotenv
    REDIS_HOST=localhost
@@ -56,10 +56,10 @@ npm install nestjs-redis-lock ioredis redlock @nestjs/config
    ```
 
 ## How It Works
-- The @RedisLock() decorator adds metadata to methods
-- At module init, all providers and controllers are scanned for those methods
-- Target methods are dynamically wrapped to acquire a distributed lock using Redlock
-- If the lock is acquired, the method is executed. Otherwise, it is skipped or rejected
+- The `@RedisLock()` decorator stores metadata on methods in `@Injectable()` classes
+- At module initialization, all **providers** (excluding controllers) are scanned for methods decorated with `@RedisLock()`
+- Those methods are dynamically wrapped to acquire a distributed lock using Redlock before execution
+- If the lock is successfully acquired, the method is executed; otherwise, it is skipped or throws an error (depending on implementation)
    
 ## License
 MIT

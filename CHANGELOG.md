@@ -1,3 +1,11 @@
+## [2.0.2] - 2025-06-09
+
+### Documentation
+- Improved wording in the README to avoid confusion about provider registration and decorator usage
+- Simplified explanation of how the @RedisLock() decorator works and where it can be applied
+
+---
+
 ## [2.0.1] - 2025-06-09
 
 ### Added
